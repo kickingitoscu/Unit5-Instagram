@@ -27,12 +27,13 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let query = PFQuery(className:"Posts")
+        let query = PFQuery(className:"Post")
         query.includeKey("author")
         query.limit = 20
         query.findObjectsInBackground { (posts, error ) in
             if posts != nil {
                 self.posts = posts!
+                print(posts!)
                 self.tableView.reloadData()
             }
         }

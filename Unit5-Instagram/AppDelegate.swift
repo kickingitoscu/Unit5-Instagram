@@ -13,24 +13,24 @@ import Parse
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) {
+//    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) {
+//        let parseConfig = ParseClientConfiguration {
+//            $0.applicationId = "4kXarHhTV3vErzBA3YO4TsRpOKX7NdKiia0LgccA"
+//            $0.clientKey = "7W0YQCjL6KdAjWTQ4U5Bt6DCAO9L2YeSb1uxfY7c"
+//            $0.server = "https://parseapi.back4app.com"
+//        }
+//        Parse.initialize(with: parseConfig)
+////        return true doesn't like that return statement
+//    }
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
         let parseConfig = ParseClientConfiguration {
             $0.applicationId = "4kXarHhTV3vErzBA3YO4TsRpOKX7NdKiia0LgccA"
             $0.clientKey = "qGqcSjJtcy8RvkoafeGS5bxHR8yeaCklg1IIuO3n"
             $0.server = "https://parseapi.back4app.com"
         }
         Parse.initialize(with: parseConfig)
-//        return true doesn't like that return statement
-    }
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-//        let parseConfig = ParseClientConfiguration {
-//            $0.applicationId = "4kXarHhTV3vErzBA3YO4TsRpOKX7NdKiia0LgccA"
-//            $0.clientKey = "qGqcSjJtcy8RvkoafeGS5bxHR8yeaCklg1IIuO3n"
-//            $0.server = "https://parseapi.back4app.com"
-//        }
-//        Parse.initialize(with: parseConfig)
         return true
     }
 
