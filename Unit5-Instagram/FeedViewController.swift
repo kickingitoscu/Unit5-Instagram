@@ -46,7 +46,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidAppear(animated)
         
         let query = PFQuery(className:"Post")
-        query.includeKeys(["author", "comments", " comments.author"])
+        query.includeKeys(["author", "comments", "comments.author"])
         query.limit = 20
         query.findObjectsInBackground { (posts, error ) in
             if posts != nil {
@@ -91,7 +91,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         let post = posts[section]
         let comments = post["comments"] as? [PFObject] ?? []
         
-        return comments.count + 1
+        return comments.count + 2
+        //return 2
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -128,6 +130,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddCommentCell")!
             return cell
         }
+    
+//
         
     }
     
@@ -145,12 +149,13 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     @IBAction func LogoutButton(_ sender: Any) {
-        
         PFUser.logOut()
         let main = UIStoryboard(name: "Main", bundle: nil)
         let loginViewController = main.instantiateViewController(withIdentifier: "LoginViewController")
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        delegate.window?.rootViewController = loginViewController
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+          let sceneDelegate = windowScene.delegate as? SceneDelegate else { return }
+        //let delegate = UIApplication.shared.delegate as! SceneDelegate
+        sceneDelegate.window?.rootViewController = loginViewController
     }
     
     
